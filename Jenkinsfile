@@ -23,16 +23,11 @@ node{
         sh 'docker push anudeepb/java-web-app-docker'
      }
      
-      stage('Run Docker Image In Dev Server') {
+      stage('Run Docker Image In Dev Serverer') {
            
-        def dockerRun = ' docker run -d -p 8080:8080 --name javawebappcontainer anudeepb/java-web-app-docker:1'
-          
           
         
-        sshagent(['Docker_Server']) {  
-        sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.47.208 docker run -d -p 8080:8080 --name javawebappcontainer anudeepb/java-web-app-docker:1'
-        sh 'ssh  StrictHostKeyChecking=no ubuntu@172.31.47.208 docker rm -f javawebappcontainer || true'
-        sh "ssh ubuntu@172.31.47.208 ${dockerRun}"
+
        
     }
       }
