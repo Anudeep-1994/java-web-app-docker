@@ -20,7 +20,7 @@ node{
         withCredentials([string(credentialsId: 'Docker_Hub_Passowrd', variable: 'Docker_Hub_Paswword')]) {
           sh "docker login -u anudeepb -p ${Docker_Hub_Password}"
         }
-        sh 'docker push dockerhandson/java-web-app'
+        sh 'docker push anudeepb/java-web-app'
      }
      
       stage('Run Docker Image In Dev Server'){
