@@ -13,14 +13,14 @@ node{
     
     
     stage('Build Docker Image'){
-        sh 'docker build -t anudeepb/java-web-app .'
+        sh 'docker build -t anudeepb/java-web-app-docker .'
     }
     
     stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'Docker_Hub_Passowrd', variable: 'Docker_Hub_Paswword')]) {
           sh "docker login -u anudeepb -p ${Docker_Hub_Password}"
         }
-        sh 'docker push anudeepb/java-web-app'
+        sh 'docker push anudeepb/java-web-app-docker'
      }
      
       stage('Run Docker Image In Dev Server'){
