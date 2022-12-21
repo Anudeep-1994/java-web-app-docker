@@ -23,13 +23,14 @@ node{
         sh 'docker push anudeepb/java-web-app-docker'
      }
      
-      stage('Run Docker Image In Dev Serverer') {
-           
+      stage("Deploy Application As Docker Container In Dcoker Deployment Server") {
           
-        
-
-       
-    }
+          sshagent(['Docker_Dev_Depoly_Server_SSH']) {
+       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.39.2 docker rm -f javawebappcontainer || true"
+       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.39.2 docker run -d -p 8080:8080 --name javawebappcontainer anudeepb/java-web-app-docker:1"
+}
       }
+           
+       
      
 }
